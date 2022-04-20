@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>前端面试题 | 2c不高兴</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/cat/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="/cat/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+  
+  
+<link rel="stylesheet" href="/cat/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/cat/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/cat/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/cat/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/cat/atom.xml" title="2c不高兴" type="application/atom+xml">
+</head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+  
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+<div id='loader'>
+  <link rel="stylesheet" href="/cat/js/loaded/index.css" >
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+    <div class="loading-word">加载中...</div>
+  </div>
+</div>
+
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+  
+</script>
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (href, before, media, attributes) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/cat/js/swiper/swiper.min.js"></script>
+<script src="/cat/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/cat/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/cat/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/cat/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header   " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/cat/medias/logo.png" class="lazyload placeholder" data-srcset="/cat/medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <h3 class="drawer-box-head_title">2c不高兴</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/about" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/cat/friends" class="drawer-menu-item-link">
+                  
+                  <span class="name">友情链接</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                  
+                  <li>
+                    <a href="/cat/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/cat/huoban">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>友情连接</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/cat/me">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>关于我</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a href="https://github.com/1054711110">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="/cat/medias/logo.png" class="lazyload placeholder" data-srcset="/cat/medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+        </div>
+      
+      <a href="/cat/" class="logo">2c不高兴</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/" class="menu-item-link" title="首页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/archives" class="menu-item-link" title="归档">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/tags" class="menu-item-link" title="标签">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/categories" class="menu-item-link" title="分类">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/about" class="menu-item-link" title="关于">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/cat/friends" class="menu-item-link" title="友情链接">
+                  
+                  <span class="name">友情链接</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/cat/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/cat/huoban">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>友情连接</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/cat/me">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>关于我</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">本地搜索</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/cat/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/cat/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a href="https://github.com/1054711110" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/cat/medias/4.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        前端面试题
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2020-12-15 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/cat/categories/%E5%89%8D%E7%AB%AF/" class="post-detail-header_category">
+              前端
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 6.1k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 22分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/cat/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="1-闭包"><a href="#1-闭包" class="headerlink" title="1.闭包"></a>1.闭包</h2><p><strong>闭包:</strong><br>定义 当一个函数的返回值是另外一个函数,而返回的函数如果调用了父函数的内部变量,且返回的那个函数在外部被执行,就产生了闭包.</p>
+<p>闭包的三个特性<br>1:函数套函数<br>2:内部函数可以直接访问外部函数的内部变量或参数<br>3:变量或参数不会被垃圾回收机制回收</p>
+<p><strong>闭包的优点:</strong><br>1:变量长期驻扎在内存中<br>2:避免全局变量的污染<br>3:私有成员的存在</p>
+<p><strong>闭包的缺点</strong><br>常驻内存	增大内存的使用量	使用不当会造成内存的泄露. </p>
+<p><strong>调用方式：</strong><br>&#x2F;&#x2F;1:直接调用<br>a()()&#x2F;&#x2F;内部函数的执行</p>
+<p>&#x2F;&#x2F;2：通过赋值在调用var f &#x3D; a();  f()</p>
+<h2 id="2-作用域"><a href="#2-作用域" class="headerlink" title="2.作用域"></a>2.作用域</h2><p>作用域分为全局作用域和局部作用域</p>
+<p>全局作用域:变量在函数或者代码块{ }外定义，即为全局作用域。</p>
+<p>局部作用域:在函数内部定义的变量，就是局部作用域。局部作用域内，对外是封闭的，从外层的作用域无法直接访问函数内部的作用域</p>
+<p>作用域链:自由变量的向上级作用域一层一层查找，直到找到为止，最高找到全局作用域，就形成了作用域链。</p>
+<h2 id="3-继承"><a href="#3-继承" class="headerlink" title="3.继承"></a>3.继承</h2><p><strong>class继承:</strong></p>
+<p>class 相当于es5中构造函数</p>
+<p> class中定义方法时，前后不能加function</p>
+<p>class中只能定义方法，不能定义对象，变量等</p>
+<p> class和方法内默认都是严格模式 </p>
+<p>ES5中继承:原形链继承+构造函数继承</p>
+<p><strong>原型链继承</strong>：父类的实例作为子类的原型</p>
+<p><strong>缺点</strong>: 引用类型值的属性会被所有实例共享。</p>
+<p><strong>借用构造函数继承</strong>：在子类,使用call()调用父类方法,并将父类的this修改为子类的this.就是把父类的实例属性复制了一份放到子类的函数内</p>
+<p><strong>优点:</strong><br>1	可以传递参数<br>2	解决了原型中所有实例共享的问题</p>
+<p><strong>组合继承</strong>:既能调用父类实例属性，又能调用父类原型属性</p>
+<h2 id="4-原型"><a href="#4-原型" class="headerlink" title="4.原型"></a>4.原型</h2><p><strong>原形链:</strong></p>
+<p>每个函数都有一个prototype,叫做显示原型<br>每个实例都有一个_proto_,叫做隐式原型<br>实例的隐式原型指向构造的显示原型</p>
+<p><strong>prototype constructor protp三者之前区别关系?</strong></p>
+<p>实例化和原型对象的constructor属性指向构造函数</p>
+<p>构造函数prototype指向原型对象</p>
+<p>实例化对象的_proto_指向原型对象</p>
+<h2 id="5-promise-手写异步加载图片"><a href="#5-promise-手写异步加载图片" class="headerlink" title="5.promise 手写异步加载图片"></a>5.promise 手写异步加载图片</h2><p>promise是一个容器,里面保存异步操作的结果</p>
+<p>promise是一个对象,可以获取异步操作的最终状态(成功&#x2F;失败)</p>
+<p>promise是一个构造函数,对外提供统一的API自身上有all,reject,resolve等方法,原型上有then,catch方法</p>
+<p><strong>promise两大特点</strong></p>
+<p>promise对象状态不受外界影响</p>
+<p>promise的状态一旦改变,不会在变,任何时候都可以得到这个结果,状态不可逆,只能由pending变成fulfilled或者pending变成rejected</p>
+<p>三种状态:pending初始状态 fulflled成功状态 rejected失败状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function loadImg(src)&#123;</span><br><span class="line">    return new Promise((resove,reject)=&gt;&#123;</span><br><span class="line">        const img = document.createElement(&#x27;img&#x27;)</span><br><span class="line">        img.onload = ()=&gt;&#123;</span><br><span class="line">            resove(img)</span><br><span class="line">        &#125;</span><br><span class="line">        img.onerror = ()=&gt;&#123;</span><br><span class="line">            let err = new Error(&#x27;图片加载失败&#x27;)</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = src</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const url = &#x27;https://qiniu.img.newtechcollege.com/c70fc3da&#x27;</span><br><span class="line">const url2 = &#x27;http://qiniu.newtechcollege.com/6dd24cb4&#x27;</span><br><span class="line"></span><br><span class="line">loadImg(url).then(img =&gt; &#123;</span><br><span class="line">    console.log(img.width)</span><br><span class="line">    return img</span><br><span class="line">&#125;).then(img=&gt;&#123;</span><br><span class="line">    console.log(img.height)</span><br><span class="line">    return loadImg(url2)</span><br><span class="line">&#125;).then(img =&gt; &#123;</span><br><span class="line">    console.log(img.src)</span><br><span class="line">    return img</span><br><span class="line">&#125;).then(img=&gt;&#123;</span><br><span class="line">    console.log(img.height)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-async-x2F-await"><a href="#6-async-x2F-await" class="headerlink" title="6.async&#x2F;await"></a>6.async&#x2F;await</h2><p>async 是“异步”的简写， async 用于声明一个异步的 function</p>
+<p>await 可以认为是 async wait 的简写，await 用于等待一个异步方法执行完成。</p>
+<p><strong>特点:</strong></p>
+<p>asayc的用法，它作为一个关键字放到函数前面，这样普通函数就变为了异步函数<br>异步async函数调用，跟普通函数的使用方式一样<br>异步async函数返回一个promise对象<br>async函数配合await关键字使用是异步方法，但是阻塞式的</p>
+<h2 id="7-双向数据绑定"><a href="#7-双向数据绑定" class="headerlink" title="7.双向数据绑定"></a>7.双向数据绑定</h2><p>vue的双向数据绑定只要是采用数据劫持结合开发者和订阅者方式 通过Object.defineProperty（）来劫持各个属性的setter，getter， 在数据变动时发布消息给订阅者，触发相应监听回调</p>
+<p>vue的数据双向绑定 将MVVM作为数据绑定的入口，整合Observer，Compile和Watcher三者。 通过Observer来监听自己的model的数据变化，通过Compile来解析模板指令。</p>
+<h2 id="8-vitral-Dom"><a href="#8-vitral-Dom" class="headerlink" title="8.vitral Dom"></a>8.vitral Dom</h2><p>virtual-dom(简称vdom)的概念得益于react的出现react这个框架的非常重要的特性之一。</p>
+<p>在vue的整个应用生命周期当中，每次需要更新视图的时候便会使用vdom</p>
+<p>vdom算法是基于snabbdom算法所做的修改。</p>
+<p><strong>实现</strong><br>①用js对象构造一个虚拟的dom树，插入到文档中；<br>②状态变更时，记录新树和旧树的差异；<br>③把上面的差异构建到真正的dom中</p>
+<h2 id="9-vuex"><a href="#9-vuex" class="headerlink" title="9.vuex"></a>9.vuex</h2><p>Vuex 是适用于 Vue.js 应用的状态管理库，为应用中的所有组件提供集中式状态存储与操作，保证了所有状态以可预测的方式进行修改。</p>
+<p>优点 当state中定义一个数据后，可以在所在项目的任何组件中进行获取，修改，修改可以得到全局的变更</p>
+<p>运行机制：vue提供数据来驱动试图，通过dispath派发actions,通过commit调用mutations的方法，修改state的数据</p>
+<p>①state：定义初始数据。</p>
+<p>②mutations：更改Vuex的store中的状态的唯一方法是提交mutation</p>
+<p>③getters：可以对 state 进行计算操作，它就是 store 的计算属性虽然在组件内也可以做计算属性</p>
+<p>④actions：异步操作初始数据，其实就是调用mutations里面的方法。</p>
+<p>⑤module：面对复杂的应用程序，当管理的状态比较多时；我们需要将vuex的store对象分割成模块(modules)。</p>
+<h2 id="10-keep-alive"><a href="#10-keep-alive" class="headerlink" title="10.keep-alive?"></a>10.keep-alive?</h2><p><code>&lt;keep-alive&gt;</code> 标签：是Vue的内置组件，在组件切换过程中将状态保留在内存中，取消组件的销毁函数，防止重复渲染DOM</p>
+<p>当用它包裹 <code>&lt;router-view&gt;</code> 时，会缓存不活动的组件实例，而不是销毁它们。</p>
+<p>和 <code>&lt;transition&gt;</code> 相似，它自身不会渲染一个 DOM 元素。</p>
+<p>使用 <code>&lt;keep-alive&gt;</code> 组件后即可使用 activated() 和 deactivated() 这两个生命周期函数</p>
+<h2 id="11-组建通信"><a href="#11-组建通信" class="headerlink" title="11.组建通信?"></a>11.组建通信?</h2><p>父组件传到子组件 通过props属性给子组件通信的</p>
+<p>子组件向父组件传值  父组件通过自定义事件,接受子组件传递来的参数,子组件通过$emit触发父组件上的自定义事件发送参数</p>
+<p>ref通信:ref可以为自己的dom做出独有的标记,利用this.$refs来获取从而操作</p>
+<p><strong>兄弟通信:bus事件</strong></p>
+<ol>
+<li>在其中一个组件的 挂载钩子函数上做事件的声明</li>
+<li>在另一个组件中通过bus.$emit(“”)来触发这个自定义事件</li>
+</ol>
+<h2 id="12-自定义组件"><a href="#12-自定义组件" class="headerlink" title="12.自定义组件"></a>12.自定义组件</h2><p>在子组件中创建模板，在props中接受父组件传递的数据，在父组件中引入子组件，然后在components中创建子组件，挂载到父组件的template中</p>
+<p>props 父传子使用 $emit(参1，参2)子传父时使用 参1是自定义的事件名，参2是要传递的数据，在父组件的子组件中绑定自定义事件名，调用一个函数，函数的形参就是传递的数据</p>
+<h2 id="13-自定义指令"><a href="#13-自定义指令" class="headerlink" title="13.自定义指令"></a>13.自定义指令</h2><p>自定义指令分为：全局自定义指令，局部自定义指令。</p>
+<p><strong>钩子函数</strong></p>
+<p>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：<br><strong>inserted</strong>：被绑定元素插入父节点时调用。</p>
+<p><strong>bind</strong>：只调用一次，指令第一次绑定到元素时调用。</p>
+<p><strong>update</strong>：所在组件的 VNode 更新时调用</p>
+<p><strong>componentUpdated</strong>：指令所在组件的 VNode 及其子 VNode 全部更新后调用。</p>
+<p><strong>unbind</strong>：只调用一次，指令与元素解绑时调用。</p>
+<p>**指令钩子函数会被传入以下参数：<br>**<br><strong>el</strong>：指令所绑定的元素，可以用来直接操作 DOM 。<br><strong>binding</strong>：一个对象，包含以下属性：<br><strong>name</strong>：指令名，不包括 v- 前缀。<br><strong>value</strong>：指令的绑定值，例如：v-my-directive&#x3D;“1 + 1” 中，绑定值为 2。<br><strong>oldValue</strong>：指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。<br><strong>expression</strong>：字符串形式的指令表达式<br><strong>arg</strong>：传给指令的参数<br><strong>modifiers</strong>：一个包含修饰符的对象<br><strong>vnode：</strong> Vue编译生成的虚拟节点<br><strong>oldVnode</strong>：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。</p>
+<h2 id="14-路由守卫"><a href="#14-路由守卫" class="headerlink" title="14.路由守卫"></a>14.路由守卫</h2><p>全局路由守卫有个两个：一个是全局前置守卫，一个是全局后置守卫</p>
+<p>① <strong>全局导航钩子</strong>：一般用来判断权限，以及页面丢失时需要执行的操作；<br>beforeEach（）每次路由进入之前执行的函数。<br>afterEach（）每次路由进入之后执行的函数。<br>beforeResolve（）2.5新增</p>
+<p>② <strong>单个路由（实例钩子）</strong>：某个指定路由跳转时需要执行的逻辑。<br>beforeEnter（）     beforeLeave（）</p>
+<p>③ <strong>组件路由钩子</strong>：<br>beforeRouteEnter（）<br>beforeRouteLeave（）<br>beforeRouteUpdate（）</p>
+<p>**路由独享守卫:**路由独享守卫是在路由配置页面单独给路由配置的一个守卫</p>
+<h2 id="15-生命周期函数"><a href="#15-生命周期函数" class="headerlink" title="15.生命周期函数"></a>15.生命周期函数</h2><p>beforeCreate(创建前)：data 和 methods 的数据没有初始化</p>
+<p> created(创建后)：data和methods中的数据已经初始化完毕</p>
+<p> beforeMount(载入前)：模板编译好了，没有挂载到页面，页面此时是旧的</p>
+<p> mounted(载入后)：此时页面已经渲染完毕，这个是最早可以操作dom的钩子函数 </p>
+<p> beforeUpdate(修改前)：页面显示的数据旧的，data的数据是新的</p>
+<p>updated(修改后)：页面于data的数据已经同步 </p>
+<p>beforeDestroy(销毁前)：该钩子函数执行的时候，数据还可以使用</p>
+<p> destroyed(销毁后)：数据已经销毁完毕</p>
+<p> activated(keep-alive组件激活调用)</p>
+<p>deactivated(keep-alive组件停用调用)</p>
+<p>errorcapture(捕获来自子孙组件错误是调用)</p>
+<h2 id="16-跨域-jsonp-vue"><a href="#16-跨域-jsonp-vue" class="headerlink" title="16.跨域(jsonp,vue)"></a>16.跨域(jsonp,vue)</h2><p><strong>理解跨域的概念</strong>：协议、域名、端口都相同才同域，否则都是跨域</p>
+<p><strong>jsonp 实现原理</strong>：主要是利用动态创建 script 标签请求后端接口地址，然后传递 callback 参数，后端接收 callback，后端经过数据处理，返回 callback 函数调用的形式，callback 中的参数就是 json</p>
+<p><strong>优点</strong>：浏览器兼容性好，</p>
+<p><strong>缺点</strong>：只支持 get 请求方式</p>
+<p><strong>vue跨域</strong>: 在vue.config.js的空文件中，配置文件</p>
+<ul>
+<li><p>target：要访问的接口的基础地址</p>
+</li>
+<li><p>changeOrigin：是否可以跨域</p>
+</li>
+<li><p>secure：是否进行 https 验证</p>
+</li>
+<li><p>pathRewrite：将 api 替换成 ‘ ‘ 中的值</p>
+</li>
+</ul>
+<h2 id="17-常见状态码"><a href="#17-常见状态码" class="headerlink" title="17.常见状态码"></a>17.常见状态码</h2><p>200 OK   &#x2F;&#x2F;客户端请求成功<br>400 &#x2F;&#x2F;客户端请求有语法错误，不能被服务器所理解<br>401 &#x2F;&#x2F;请求未经授权<br> 403  &#x2F;&#x2F;服务器收到请求，但是拒绝提供服务<br>404 &#x2F;&#x2F;请求资源不存在,输入了错误的 URL<br>500  &#x2F;&#x2F;服务器发生不可预期的错误<br>503  &#x2F;&#x2F;服务器当前不能处理客户端的请求，一段时间后可能恢复正常 </p>
+<h2 id="18-项目流程"><a href="#18-项目流程" class="headerlink" title="18.项目流程"></a>18.项目流程</h2><p>创建脚手架下载element -ui 配置路由  创建登入页面 在element-ui复制表单 和表单验证 把账号密码进行绑定 根据接口判断登入状态是否 !&#x3D;200登入失败,&#x3D;&#x3D;200登入成功 this.$router.push 跳转到后台首页,存入token值 登入完成进行后台首页基本布局 分为头部区域 主题区域  侧边栏 进行相对应的css布局 然后配置axios拦截器 进行token验证 在main.js中添加代码，在将axios挂载到vue原型 请求侧边栏数据 通过v-for双重循环渲染左侧菜单 根据左侧菜单的路由制作相应的用户管理,权限管理,商品管理,订单管理,数据统计根据项目文档完成里面对应的功能.</p>
+<h2 id="19-深拷贝-手写代码"><a href="#19-深拷贝-手写代码" class="headerlink" title="19.深拷贝 手写代码"></a>19.深拷贝 手写代码</h2><p>深拷贝复制变量值，对于非基本类型的变量，则递归至基本类型变量后，再复制。 深拷贝后的对象与原来的对象是完全隔离的，互不影响， 对一个对象的修改并不会影响另一个对象。</p>
+<p><strong>为什么要使用深拷贝</strong>: 我们希望在改变新的数组（对象）的时候，不改变原数组（对象）</p>
+<p>可 以 使 用 for in 、 Object.assign 、 扩 展 运 算 符 … 、Array.prototype.slice()、Array.prototype.concat()    、递归等递归函数实现深拷贝</p>
+<h2 id="20-输入url到页面出现发生了什么"><a href="#20-输入url到页面出现发生了什么" class="headerlink" title="20.输入url到页面出现发生了什么"></a>20.输入url到页面出现发生了什么</h2><p>大致过程是这样的：</p>
+<p>\1           DNS 解析</p>
+<p>\2.             TCP 连接</p>
+<p>\3.             发送 HTTP 请求</p>
+<p>\4.             服务器处理请求并返回需要的数据</p>
+<p>\5.             浏览器解析渲染页面</p>
+<p>\6.             连接结束</p>
+<p><strong>这里会延伸出问 http 状态码，和三次握手和四次挥手相关问题：</strong></p>
+<p><strong>三次握手</strong><br>第一次握手<br>客户端向服务端发送连接请求报文段。请求发送后，客户端便进入 SYN-SENT 状态。</p>
+<p>第二次握手<br>服务端收到连接请求报文段后，如果同意连接，则会发送一个应答</p>
+<p>第三次握手<br>当客户端收到连接同意的应答后，还要向服务端发送一个确认报文段，表示： 服务端发来的连接同意应答已经成功收到。</p>
+<p>CP 连接的释放一共需要四步，因此称为『四次挥手』。<br>TCP 连接是双向的，因此在四次挥手中，前两次挥手用于断开一个方向的连接，后两次挥手用于断开另一方向的连接。</p>
+<h2 id="21-虚拟DOM和diff算法"><a href="#21-虚拟DOM和diff算法" class="headerlink" title="21.虚拟DOM和diff算法"></a>21.虚拟DOM和diff算法</h2><p>虚拟dom就是用对象的方式区代真实的dom操作。</p>
+<p>当页面打开时浏览器解析HTML元素，构建一个dom树，将状态保存起来，在内存中模拟dom操作，又会生成一个dom树，两个进行比较，根据diff算法找出不同的地方，之渲染一次不同的地方</p>
+<p>diff算法就是进行虚拟节点对比，并返回一个patch对象，用来存储两个节点不同的地方，最后用patch记录的消息去局部更新Dom</p>
+<h2 id="22-vue组件中的data为什么是一个函数"><a href="#22-vue组件中的data为什么是一个函数" class="headerlink" title="22.vue组件中的data为什么是一个函数"></a>22.vue组件中的data为什么是一个函数</h2><p>data是一个函数时，每个组件实例都有自己的作用域，每个实例相互独立，不会相互影响。</p>
+<p>Object是引用数据类型，如果不用function返回，每个组件的data都是内存的同一个地址，一个数据改变了其他也改变了</p>
+<h2 id="23-vue项目打包"><a href="#23-vue项目打包" class="headerlink" title="23.vue项目打包"></a>23.vue项目打包</h2><p>一、修改请求静态资源的路径<br>打开config下的index.js文件，修改assetsPublicPath的值，从‘&#x2F;’改为‘.&#x2F;’。即从根路径改为相对路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">    // Template for index.html</span><br><span class="line">    index: path.resolve(__dirname, &#x27;../dist/index.html&#x27;),</span><br><span class="line"></span><br><span class="line">    // Paths</span><br><span class="line">    assetsRoot: path.resolve(__dirname, &#x27;../dist&#x27;),</span><br><span class="line">    assetsSubDirectory: &#x27;static&#x27;,</span><br><span class="line">    assetsPublicPath: &#x27;./&#x27;,</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>二、修改本地图片的路径<br>打开build下的utils.js文件，增加 publicPath:’..&#x2F;..&#x2F;‘</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (options.extract) &#123;</span><br><span class="line">  return ExtractTextPlugin.extract(&#123;</span><br><span class="line">    use: loaders,</span><br><span class="line">    fallback: &#x27;vue-style-loader&#x27;,</span><br><span class="line">    publicPath:&#x27;../../&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  return [&#x27;vue-style-loader&#x27;].concat(loaders)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>三、在终端运行npm run build。</p>
+<h2 id="25-防抖和节流"><a href="#25-防抖和节流" class="headerlink" title="25.防抖和节流"></a>25.防抖和节流</h2><p><strong>防抖</strong>: 触发高频事件后 定时器内函数只会执行一次，如果定时器内高频事件再次被触发，则重新计算时间<br>场景:<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次。</p>
+<p><strong>节流</strong> :高频事件触发，在定时器内只会执行一次，所以节流会稀释函数的执行效率。<br>1.拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动</p>
+<p>2.缩放场景：监控浏览器 resize</p>
+<p>3.动画场景：避免短时间内多次触发动画引起性能问题</p>
+<h2 id="26-数组去重"><a href="#26-数组去重" class="headerlink" title="26.数组去重"></a>26.数组去重</h2><p><strong>indexOf</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">function newArr(array)&#123; </span><br><span class="line">    //一个新的数组 </span><br><span class="line">    var arrs = []; </span><br><span class="line">    //遍历当前数组 </span><br><span class="line">    for(var i = 0; i &lt; array.length; i++)&#123; </span><br><span class="line">        //如果临时数组里没有当前数组的当前值，则把当前值push到新数组里面 </span><br><span class="line">        if (arrs.indexOf(array[i]) == -1)&#123; </span><br><span class="line">            arrs.push(array[i])</span><br><span class="line">        &#125;; </span><br><span class="line">    &#125; </span><br><span class="line">    return arrs; </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var arr = [1,1,2,5,5,6,8,9,8];</span><br><span class="line"> </span><br><span class="line">console.log(newArr(arr))</span><br></pre></td></tr></table></figure>
+<p><strong>Set</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function newArr(arr)&#123;</span><br><span class="line">    return Array.from(new Set(arr))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var arr = [1,1,2,9,6,9,6,3,1,4,5];</span><br><span class="line"> </span><br><span class="line">console.log(newArr(arr))</span><br></pre></td></tr></table></figure>
+<p> <strong>利用递归去重</strong></p>
+<p>24.Git指令<br>git init 初始化git仓库<br>git status 查看文件状态<br>git add 文件列表 追踪文件<br>git commit -m 提交信息 向仓库中提交代码<br>git log 查看提交记录<br>覆盖工作目录中的文件: git checkout –文件名<br>将文件从暂存区中删除: git r m –cached 文件名</p>
+<p>git branch 查看分支</p>
+<p>git branch 分支名称 创建分支</p>
+<p>git checkout 分支名称 切换分支</p>
+<p>git merge 来源分支 合并分支 (必须在master分支上才能合并d)</p>
+<p>git branch -d 分支名称 删除分支（分支被合并后才允许删除）（-D 强制删除）</p>
+<p>将本地仓库推送到远程仓库: git push 项目链接</p>
+<p>Git 添加远程仓库origin (origin是仓库别名): git remote add 仓库名 项目链接</p>
+<p>git push origin master<br>git push -u origin master</p>
+<p>-u 将推送地址和分支保存，下次推送输入git push即可</p>
+<h2 id="25-什么是盒子模型？"><a href="#25-什么是盒子模型？" class="headerlink" title="25.什么是盒子模型？"></a>25.什么是盒子模型？</h2><p>在我们HTML页面中，每一个元素都可以被看作一个盒子，而这个盒子由：内容区（content）、填充区（padding）、边框区（border）、外边界区（margin）四部分组成。<br>标准模式下: 一个块的总宽度(页面中占的宽度)&#x3D; width + margin(左右) + padding(左右) + border(左右)</p>
+<p>怪异模式下： 一个块的总宽度&#x3D; width + margin(左右)（即width已经包含了padding和border值）（IE浏览器）</p>
+<h2 id="26-什么是内存泄漏"><a href="#26-什么是内存泄漏" class="headerlink" title="26.什么是内存泄漏"></a>26.什么是内存泄漏</h2><p>程序的运行需要内存。只要程序提出要求，操作系统或者运行时就必须供给内存。</p>
+<p>对于持续运行的服务进程，必须及时释放不再用到的内存。否则，内存占用越来越高，轻则影响系统性能，重则导致进程崩溃。</p>
+<h2 id="27-原生Ajax的创建过程"><a href="#27-原生Ajax的创建过程" class="headerlink" title="27.原生Ajax的创建过程"></a>27.原生Ajax的创建过程</h2><p>1.创建xhr 核心对象<br>2.调用open 准备发送<br>3.如果是post请求，必须设置请求头。<br>4.调用send 发送请求 （如果不需要参数，就写null）<br>5.监听异步回调<br>备注：如果是post请求，想要传json格式数据。</p>
+<h2 id="28-事件冒泡-事件捕获-事件流"><a href="#28-事件冒泡-事件捕获-事件流" class="headerlink" title="28.事件冒泡,事件捕获,事件流"></a>28.事件冒泡,事件捕获,事件流</h2><p>事件冒泡：事件冒泡会从当前触发的事件目标一级一级往上传递，依次触发，直到document为止。<br>事件捕获：事件捕获会从document开始触发，一级一级往下传递，依次触发，直到真正事件目标为止。<br>事件流:DOM结构是一个树型结构，当一个HTML元素产生一个事件时，该事件会在元素结点与根结点之间的路径传播，路径所经过的结点都会收到该事件，这个传播过程可称为DOM事件流。</p>
+<h2 id="29-阻止事件冒泡"><a href="#29-阻止事件冒泡" class="headerlink" title="29.阻止事件冒泡"></a>29.阻止事件冒泡</h2><p>1.event.stopPropagation();<br>事件处理过程中，阻止了事件冒泡，但不会阻击默认行为<br>2.return false;<br>事件处理过程中，阻止了事件冒泡，也阻止了默认行为</p>
+<p>还有一种有冒泡有关的：<br>3.event.preventDefault();<br>它的作用是：事件处理过程中，不阻击事件冒泡，但阻击默认行为</p>
+<h2 id="30-箭头函数与普通函数区别"><a href="#30-箭头函数与普通函数区别" class="headerlink" title="30.箭头函数与普通函数区别"></a>30.箭头函数与普通函数区别</h2><p>箭头函数是匿名函数不能作为构造函数不能使用new<br>箭头函数不绑定arguments,需要用运算符解决…解决<br>箭头函数不绑定this,会捕获其所在的this值,作为自己的this值<br>箭头函数通过call()或apply()调用一个函数,只传入了一个参数,对this并没有影响.<br>箭头函数没有原型属性</p>
+<h2 id="31-let、const、var-的区别"><a href="#31-let、const、var-的区别" class="headerlink" title="31.let、const、var 的区别"></a>31.let、const、var 的区别</h2><p>var声明的变量存在变量提升,变量可以声明之前调用<br>let和const不存在变量提升<br>let和const存在暂时性死区<br>var允许重复声明变量, let和const在同一作用域不允许重复声明变量<br>var不存在块级作用域,let和const存在块级作用域.<br>var和let可以修改声明变量<br>const声明的变量不能改变一但改变立即初始化,不能留到以后赋值</p>
+<h2 id="32-单向数据流和双向绑定"><a href="#32-单向数据流和双向绑定" class="headerlink" title="32.单向数据流和双向绑定"></a>32.单向数据流和双向绑定</h2><p>1.Vue 在不同组件间强制使用单向数据流,父组件可以向子组件传递数据，但是子组件不能直接修改父组件的状态。</p>
+<p>2.数据的双向绑定<br>主要由MVVM框架实现，主要由三部分组成View、ViewModel和Model组成，其中view和model不能直接进行通信，他们通过中间件ViewModel来进行通信。</p>
+<h2 id="33-图片懒加载"><a href="#33-图片懒加载" class="headerlink" title="33.图片懒加载"></a>33.图片懒加载</h2><p>对页面加载速度影响最大的就是图片，一张普通的图片可以达到几M的大小。当页面图片很多时，页面的加载速度缓慢，几S钟内页面没有加载完成，也许会失去很多的用户。</p>
+<p>所以，对于图片过多的页面，为了提高加载速度, 我们需要将页面内未出现在可视区域内的图片先不做加载， 等到访问到可视区域后再去加载。这样子对于页面加载性能会有很大的提升，也提高了用户体验。</p>
+<h2 id="34-nextTick的理解"><a href="#34-nextTick的理解" class="headerlink" title="34.nextTick的理解"></a>34.nextTick的理解</h2><p>使用nextTick的原因：Vue是异步修改DOM的，并且不鼓励开发者直接接触DOM，但是有时候需要必须对数据更改后的DOM元素做相应的处理，但是获取到的DOM数据并不是更改后的数据，这时候就需要this.$nextTick()；<br>原理：Vue通过异步队列控制DOM更新和nextTick回调函数先后执行的方式。</p>
+<h2 id="35-for-in-与-for-of的区别"><a href="#35-for-in-与-for-of的区别" class="headerlink" title="35. for in 与 for of的区别"></a>35. for in 与 for of的区别</h2><p>for of 遍历数组<br>用于对数组或者对象的属性进行循环操作。</p>
+<p>for in 遍历对象<br>for…of循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象，以及字符串</p>
+<h2 id="36-数组操作方法"><a href="#36-数组操作方法" class="headerlink" title="36.数组操作方法"></a>36.数组操作方法</h2><p><img src="https://img-blog.csdnimg.cn/20201215163917647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3prbDg2NTc0ODAxMw==,size_16,color_FFFFFF,t_70#pic_center" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/20201215163917647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3prbDg2NTc0ODAxMw==,size_16,color_FFFFFF,t_70#pic_center" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="在这里插入图片描述"></p>
+<h2 id="37-字符操作方法"><a href="#37-字符操作方法" class="headerlink" title="37.字符操作方法"></a>37.字符操作方法</h2><p><img src="https://img-blog.csdnimg.cn/20201215164420800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3prbDg2NTc0ODAxMw==,size_16,color_FFFFFF,t_70#pic_center" class="lazyload placeholder" data-srcset="https://img-blog.csdnimg.cn/20201215164420800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3prbDg2NTc0ODAxMw==,size_16,color_FFFFFF,t_70#pic_center" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="在这里插入图片描述"></p>
+<h2 id="38-水平垂直居中"><a href="#38-水平垂直居中" class="headerlink" title="38.水平垂直居中"></a>38.水平垂直居中</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">      &lt;div id=&quot;x&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>方法一：父相自绝后，子分部向左向上移动本身宽度和高度的一半（也可以用 transform:translate(-50%,-50%)）最常用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#box&#123;</span><br><span class="line">       width: 400px;</span><br><span class="line">       height: 400px;</span><br><span class="line">       background: red;</span><br><span class="line">       position: relative;</span><br><span class="line">   &#125;</span><br><span class="line">   #x&#123;</span><br><span class="line">       width: 200px;</span><br><span class="line">       height: 200px;</span><br><span class="line">       background: yellow;</span><br><span class="line">       position: absolute;</span><br><span class="line">       left: 50%;</span><br><span class="line">       top: 50%;</span><br><span class="line">       margin-left: -100px;</span><br><span class="line">       margin-top: -100px;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>方法二：父元素设置成弹性盒，子元素横向居中，纵向居中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#box&#123;</span><br><span class="line">        width: 400px;</span><br><span class="line">        height: 400px;</span><br><span class="line">        background: red;</span><br><span class="line">        display: flex;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">   </span><br><span class="line">    &#125;</span><br><span class="line">    #x&#123;</span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background: yellow;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>方法三：父向子绝，子元素所有定位为0，margin设置auto自适应。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#box&#123;</span><br><span class="line">       width: 400px;</span><br><span class="line">       height: 400px;</span><br><span class="line">       background: red;</span><br><span class="line">       position: relative;</span><br><span class="line">   &#125;</span><br><span class="line">   #x&#123;</span><br><span class="line">       width: 200px;</span><br><span class="line">       height: 200px;</span><br><span class="line">       background: yellow;</span><br><span class="line">       position: absolute;</span><br><span class="line">       left: 0;</span><br><span class="line">       top: 0;</span><br><span class="line">       right: 0;</span><br><span class="line">       bottom: 0;</span><br><span class="line">       margin: auto;</span><br><span class="line">     </span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="39-null和undefined区别"><a href="#39-null和undefined区别" class="headerlink" title="39.null和undefined区别"></a>39.null和undefined区别</h2><p>在JavaScript中，null 和 undefined 几乎相等<br><strong>null和undefined区别：</strong><br>null表示没有对象，可能将来要赋值一个对象，即该处不应该有值<br>undefined表示缺少值，即此处应该有值，但没有定义</p>
+<h2 id="40-箭头函数"><a href="#40-箭头函数" class="headerlink" title="40.箭头函数"></a>40.箭头函数</h2><p><strong>箭头函数与普通函数区别</strong><br>箭头函数是匿名函数不能作为构造函数不能使用new<br>箭头函数不绑定arguments,需要用运算符解决…解决<br>箭头函数不绑定this,会捕获其所在的this值,作为自己的this值<br>箭头函数通过call()或apply()调用一个函数,只传入了一个参数,对this并没有影响.<br>箭头函数没有原型属性</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/cat/tags/JS/" class="">
+              JS
+            </a>
+          
+            <a href="/cat/tags/CSS/" class="">
+              CSS
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>2c不高兴</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/cat/2020/12/15/前端面试题/" target="_blank" title="前端面试题">https://github.com/1054711110/2020/12/15/前端面试题/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/cat/medias/1.jpg" class="lazyload placeholder" data-srcset="/cat/medias/1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/cat/2022/04/14/test2/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> 上一篇:
+        <div class="title-text">Markdown基本语法</div>
+      </div>
+      
+      <!-- <div class="content">
+        ![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/cat/medias/1.jpg" class="lazyload placeholder" data-srcset="/cat/medias/1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/cat/2020/09/14/%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">GitHub</div>
+      </div>
+      <!-- <div class="content">
+        文章模板
+
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-show="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-show="visible">
+      <div class="donate-box_close">
+        <i class="fas fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-show="tabActive === 'Alipay'">
+          <img src="/cat/medias/zfb.jpg" class="lazyload placeholder" data-srcset="/cat/medias/zfb.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-show="tabActive === 'WeChatpay'">
+          <img src="/cat/medias/wx.jpg" class="lazyload placeholder" data-srcset="/cat/medias/wx.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/cat/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      
+<section id="comments">
+  <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+  <div id="SOHUCS" sid="2020/12/15/前端面试题/"></div>
+  
+</section>
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/cat/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/cat/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2019 - 2022 <a href="https://github.com/1054711110">2c</a> </p>
+
+          </div>
+        
+      
+        
+          
+            <!-- 不蒜子统计 -->
+            <!-- 不蒜子统计 -->
+<span id="busuanzi_container_site_pv">
+      <i class="fas fa-eye" aria-hidden="true"></i>本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+</span>
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+      <i class="fas fa-users" aria-hidden="true"></i>本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+</span>
+
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/cat/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/cat/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  font-size: 15px;
+  color: #42b983;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="netease"
+  type="playlist"
+  id="5273909213"
+  fixed='true'
+  autoplay='false'
+  theme='#42b983'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/cat/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+      <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/cat/js/ribbon.min.js"></script>
+    
+
+    <script src="/cat/js/utils/index.js"></script>
+    <script src="/cat/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<link href="/cat/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/cat/js/tocbot/tocbot.min.js"></script>
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -80,
+    headingsOffset: -($(window).height() * 0.4 - 45),
+    positionFixedSelector: '.toc-main',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 100) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('toc-aside')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  }
+</style> 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/cat/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/cat/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+  <script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/cat/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script>
+  comment_el = '#SOHUCS';
+  load_changyan = function () {
+    if ($(comment_el).length) {
+      (function () {
+        var appid = 'cyw1TTNtN',
+          conf = '21f68f81f159cef2d32556765179de5b';
+        var doc = document,
+          s = doc.createElement('script'),
+          h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf=' + conf + '&appid=' + appid;
+        h.insertBefore(s, h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    }
+  }
+  $(document).ready(load_changyan);
+  document.addEventListener('pjax:complete', function () {
+    load_changyan();
+  });
+</script>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script src="/cat/js/cursor/explosion.min.js"></script>
+  
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/cat/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>
